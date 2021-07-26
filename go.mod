@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/gbrlsnchs/jwt/v3 v3.0.0
 	github.com/go-sql-driver/mysql v1.6.0
+	github.com/golang/mock v1.6.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/magefile/mage v1.11.0 // indirect
