@@ -1,0 +1,10 @@
+---
+# DB Credentials
+DB_USER: ""
+DB_PWD: ""
+DB_HOST: ""
+DB_NAME: ""
+
+# APP
+PORT: ""
+ENVIRONMENT: "development"
