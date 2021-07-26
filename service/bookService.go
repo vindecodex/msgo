@@ -6,6 +6,7 @@ import (
 	"github.com/vindecodex/msgo/errs"
 )
 
+//go:generate mockgen -destination=../mocks/service/mockBookService.go -package=service github.com/vindecodex/msgo/service BookService
 type BookService interface {
 	GetAllBooks(string) ([]dto.BookResponse, *errs.Error)
 	GetBook(int) (*dto.BookResponse, *errs.Error)
