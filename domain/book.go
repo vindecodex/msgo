@@ -12,6 +12,7 @@ type Book struct {
 	Length int    `json:"length"`
 }
 
+//go:generate mockgen -destination=../mocks/domain/mockBookRepository.go -package=domain github.com/vindecodex/msgo/domain BookRepository
 type BookRepository interface {
 	GetAll(string) ([]Book, *errs.Error)
 	GetById(int) (*Book, *errs.Error)
