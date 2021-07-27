@@ -16,11 +16,23 @@ More information about this [here](https://dzone.com/articles/hexagonal-architec
 
 ###### How to run ?
 
+Forked and clone. cd inside the project.
+
 `go run .`
 
 ###### Run test ?
 
-`go test -v ./controller ./dto`
+testing state
+
+`go test -v ./dto`
+
+test route
+
+`go test -v ./controller`
+
+test services
+
+`go test -v ./service`
 
 ###### With Docker ?
 
