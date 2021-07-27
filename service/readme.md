@@ -20,6 +20,11 @@ Running the mockgen to generate mocks and start testing:
 
 This command will search the entire codebase directory that contains comments to generate the mock
 
+---
+The implementation for testing the route will be found inside the controller directory that contains _test.go
+
+For the sake of demo purposes Not all routes have tests. Its very tideous to write mock test
+
 more information using [golang/mock](https://github.com/golang/mock)
 
 
