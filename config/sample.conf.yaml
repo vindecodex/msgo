@@ -1,0 +1,10 @@
+---
+# DB Credentials
+DB_USER: "root"
+DB_PWD: "password"
+DB_HOST: "localhost"
+DB_NAME: "msgo"
+
+# APP
+PORT: "3003"
+ENVIRONMENT: "development"
