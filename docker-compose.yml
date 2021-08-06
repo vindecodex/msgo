@@ -3,12 +3,15 @@ services:
   msgo:
     build: .
     environment:
-      DB_HOST: dbs
+      DB_HOST: db
     ports:
-      - 9000:3003
-  dbs:
+      - 3003:3003
+  db:
     image: mysql:5.7
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "msgo"
     ports:
       - 3306:3306
+
