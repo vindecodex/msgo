@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
@@ -16,18 +15,30 @@ import (
 	"github.com/vindecodex/msgo/service"
 )
 
+var client *sqlx.DB
+
+func init() {
+	initializeDatabase()
+	dbclient, err := dbClient()
+	if err != nil {
+		logger.Error("Error on initialization of Database")
+		panic(err)
+	}
+	client = dbclient
+}
+
 func main() {
 	logger.Info("MSGO starting...")
 	router := mux.NewRouter()
 
 	bookController := controller.BookController{
-		service.NewDefaultBookService(domain.NewBookRepositoryAdapter(dbClient())),
+		service.NewDefaultBookService(domain.NewBookRepositoryAdapter(client)),
 	}
 	userController := controller.UserController{
-		service.NewDefaultUserService(domain.NewUserRepositoryAdapter(dbClient())),
+		service.NewDefaultUserService(domain.NewUserRepositoryAdapter(client)),
 	}
 
-	authMiddleware := middleware.AuthMiddleware{domain.NewUserRepositoryAdapter(dbClient())}
+	authMiddleware := middleware.AuthMiddleware{domain.NewUserRepositoryAdapter(client)}
 
 	router.HandleFunc("/", controller.Welcome)
 
@@ -43,26 +54,4 @@ func main() {
 	router.Use(authMiddleware.Authorize)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", config.GETSTRING("PORT")), router))
-}
-
-func dbClient() *sqlx.DB {
-	dbUser := config.GETSTRING("DB_USER")
-	dbPwd := config.GETSTRING("DB_PWD")
-	dbHost := config.GETSTRING("DB_HOST")
-	dbName := config.GETSTRING("DB_NAME")
-
-	dataSource := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s", dbUser, dbPwd, dbHost, dbName)
-
-	client, err := sqlx.Open("mysql", dataSource)
-	if err != nil {
-		logger.Error(err.Error())
-		panic(err)
-	}
-
-	client.SetConnMaxLifetime(time.Minute * 3)
-	client.SetMaxOpenConns(10)
-	client.SetMaxIdleConns(10)
-
-	return client
-
 }
