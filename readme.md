@@ -42,6 +42,8 @@ test all with one liners
 
 ###### With Docker ?
 
+Note: If you have mysql already running you can turn it off: `systemctl stop mysql`
+
 `docker-compose up --build`
 
 or
