@@ -16,37 +16,7 @@ More information about this [here](https://dzone.com/articles/hexagonal-architec
 
 ###### How to run ?
 
-Go Forked and clone this project and cd inside msgo.
-
-`mv ./config/sample.conf.yaml ./config/conf.yaml`
-
-`go run .`
-
-###### Run test ?
-
-testing state
-
-`go test -v ./dto`
-
-testing route
-
-`go test -v ./controller`
-
-testing services
-
-`go test -v ./service`
-
-test all with one liners
-
-`go test --v ./service ./controller ./dto`
-
-###### With Docker ?
-
-`docker-compose up --build`
-
-or
-
-`docker-compose up`
+Refer to Final branch of this repository :smiley:
 
 #### LICENSE
 MIT
